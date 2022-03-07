@@ -21,9 +21,7 @@ public class LottoController {
     }
 
     public Lottos createAutoLottos(final PurchaseLottoCount purchaseLottoCount) {
-        int inputMoney = Money.getMoneyByCount(purchaseLottoCount.getAutoLottoCount());
-        final Money money = new Money(inputMoney);
-        return new Lottos(money.getCount());
+        return new Lottos(purchaseLottoCount.getAutoLottoCount());
     }
 
     public LottoWinningNumbers createLottoWinningNumbers() {
@@ -63,11 +61,11 @@ public class LottoController {
         return InputView.inputBonusNumber();
     }
 
-    public LottoResult calculateRanks(final Lottos lottos, final LottoWinningNumbers numbers) {
+    public LottoResult calculateRanks(final Lottos lottos, final LottoWinningNumbers lottoWinningNumbers) {
         LottoResult lottoResult = new LottoResult();
 
         for (Lotto lotto : lottos.getLottos()) {
-            lottoResult.calculateWinning(lotto, numbers.getWinningLotto(), numbers.getBonusNumber());
+            lottoResult.calculateWinning(lotto, lottoWinningNumbers);
         }
 
         return lottoResult;

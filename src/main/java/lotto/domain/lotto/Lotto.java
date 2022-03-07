@@ -12,9 +12,10 @@ public class Lotto {
     private static final String ERROR_CREATE_LOTTO = "[ERROR] 잘못된 숫자 입력입니다.";
     private static final String ERROR_NULL_BLANK = "[ERROR] NULL 또는 공백이 입력되었습니다.";
 
-    private List<LottoNumber> lottoNumbers = new ArrayList<>();
+    private final List<LottoNumber> lottoNumbers;
 
     public Lotto() {
+        lottoNumbers = new ArrayList<>();
     }
 
     public Lotto(final List<Integer> lottoNumbers) {
@@ -46,12 +47,12 @@ public class Lotto {
         }
     }
 
-    public void generateRandomNumbers() {
+    public List<LottoNumber> generateRandomNumbers() {
         List<Integer> numbers = LottoNumber.getcandidateLottoNumbers();
         Collections.shuffle(numbers);
         List<Integer> randomNumbers = numbers.subList(0, LOTTO_SIZE);
 
-        this.lottoNumbers = convertLottoNumbers(randomNumbers);
+        return convertLottoNumbers(randomNumbers);
     }
 
     public boolean contains(final int number) {

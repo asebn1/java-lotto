@@ -3,6 +3,7 @@ package lotto.domain.result;
 import java.util.Arrays;
 import java.util.HashMap;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoWinningNumbers;
 
 public class LottoResult {
 
@@ -18,12 +19,12 @@ public class LottoResult {
         }
     }
 
-    public void calculateWinning(final Lotto lotto, final Lotto winninglotto, final int bonusNumber) {
-        int matchCount = (int) winninglotto.getLottoNumbers()
+    public void calculateWinning(final Lotto lotto, final LottoWinningNumbers lottoWinningNumbers) {
+        int matchCount = (int) lottoWinningNumbers.getWinningLotto().getLottoNumbers()
                 .stream()
                 .filter(lottoNumber -> lotto.contains(lottoNumber.getLottoNumber()))
                 .count();
-        boolean hasBonusNumber = lotto.contains(bonusNumber);
+        boolean hasBonusNumber = lotto.contains(lottoWinningNumbers.getBonusNumber());
         Rank rank = Rank.matchRank(matchCount, hasBonusNumber);
 
         result.put(rank, result.get(rank) + 1);

@@ -4,23 +4,23 @@ public class PurchaseLottoCount {
 
     private static final String ERROR_WRONG_INPUT_COUNT = "[ERROR] 올바른 정수값을 입력해주세요";
 
-    private int manualLottoCount;
-    private int autoLottoCount;
+    private final int manualLottoCount;
+    private final int autoLottoCount;
 
     public PurchaseLottoCount(final String count, final int maxCount) {
         checkInputCount(count, maxCount);
-        this.manualLottoCount = Integer.parseInt(count);
-        this.autoLottoCount = maxCount - Integer.parseInt(count);
+        int countNum = Integer.parseInt(count);
+        this.manualLottoCount = countNum;
+        this.autoLottoCount = maxCount - countNum;
     }
 
     private void checkInputCount(final String count, final int maxCount) {
-        checkValidateInt(count);
-        checkDivideCount(Integer.parseInt(count), maxCount);
+        checkDivideCount(checkValidateInt(count), maxCount);
     }
 
-    private void checkValidateInt(final String count) {
+    private int checkValidateInt(final String count) {
         try {
-            Integer.parseInt(count);
+            return Integer.parseInt(count);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ERROR_WRONG_INPUT_COUNT);
         }

@@ -49,7 +49,7 @@ class LottoWinningNumbersTest {
     public void 당첨결과_계산_테스트() {
         LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(new Lotto(Arrays.asList(1,2,3,4,5,6)), new LottoNumber("7"));
         LottoResult lottoResult = new LottoResult();
-        lottoResult.calculateWinning(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), lottoWinningNumbers.getWinningLotto(), lottoWinningNumbers.getBonusNumber());
+        lottoResult.calculateWinning(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), lottoWinningNumbers);
         assertThat(lottoResult.getRankCount(Rank.FIRST)).isEqualTo(1);
         assertThat(lottoResult.getRankCount(Rank.SECOND)).isEqualTo(0);
         assertThat(lottoResult.getRankCount(Rank.THIRD)).isEqualTo(0);
