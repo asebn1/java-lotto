@@ -9,12 +9,11 @@ public class LottoNumber {
     private static final int MIN = 1;
     private static final int MAX = 45;
     private static final String ERROR_INTEGER_RANGE = String.format("[ERROR] %d~%d 사이의 수가 아닙니다.", MIN, MAX);
-
-    private static final List<Integer> candidateLottoNumbers = new ArrayList<>();
+    private static final List<Integer> CANDIDATE_LOTTO_NUMBERS = new ArrayList<>();
 
     static {
         IntStream.range(MIN, MAX + 1)
-                .forEach(i -> candidateLottoNumbers.add(i));
+                .forEach(i -> CANDIDATE_LOTTO_NUMBERS.add(i));
     }
 
     private final int lottoNumber;
@@ -48,7 +47,7 @@ public class LottoNumber {
     }
 
     public static List<Integer> getcandidateLottoNumbers() {
-        return candidateLottoNumbers;
+        return CANDIDATE_LOTTO_NUMBERS;
     }
 
     public int getLottoNumber() {
